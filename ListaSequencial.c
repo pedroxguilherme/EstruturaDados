@@ -9,7 +9,6 @@ typedef int TIPOCHAVE;
 
 typedef struct{	
 TIPOCHAVE chave;
-int idade;
 }Registro;
 
 
@@ -31,10 +30,11 @@ l->nroElem = 0;
 
 exibir(Lista* l){
 int i;
-printf("Lista:");
+printf("Lista:\n");
+
 for(i = 0; i < l->nroElem; i++){
 	
-	printf("%d ", l->reg[i].idade);
+	printf("%d ", l->reg[i].chave);
     printf("\n");
 }
 }
@@ -83,23 +83,28 @@ bool inserir(Lista* l, Registro reg, int i){
 	
 bool excluir(Lista* l, TIPOCHAVE ch){
 
-int j;
-int pos = buscaSequencial(l, ch);
-if(pos = -1){
+int j, pos;
+pos = buscaSequencial(l, ch);  
+if(pos == -1){
 	return false;
-}else{
+
+}
+
 	for(j = pos; j < l->nroElem; j++){
 		l->reg[j] = l->reg[j + 1];
-	}
 	
+}
+ 
+    l->nroElem--;
 	return true;
+
 }
 
 
 
 
 	
-}	
+
 	
 	
 reiniciarLista(Lista* l){
@@ -116,8 +121,14 @@ main (){
 	
 Lista* l = (Lista*) malloc(sizeof(Lista));
 Registro reg;
-reg.idade = 18;
 TIPOCHAVE ch = 0;
+Registro reg1;
+Registro reg2;
+reg.chave = 0;
+reg1.chave = 1;
+reg2.chave = 2;
+
+
 
 
 
@@ -127,13 +138,16 @@ iniciar(l);
 
 
 inserir(l, reg, 0);
+inserir(l, reg1, 1);
+inserir(l, reg2, 2);
+exibir(l);
+excluir(l, ch);
+exibir(l);
+reiniciarLista(l);
 exibir(l);
 
-bool c1 = buscaSequencial(l, ch);
-printf("%d", c1);
-//bool c1 = excluir(l, ch);
-//printf("%d", c1);
-exibir(l);
+
+
 
 
 
