@@ -44,24 +44,24 @@ int tamanho(Lista* l){
 	int i = l->inicio;
 	int tam = 0;
 	while(i != INVALIDO){
-		i = l->A.prox;
+		i = l->A[i].prox;
 		tam++;
 	}
 }
 exibir(Lista *l){
 	
-	int i = l.inicio;
+	int i = l->inicio;
 	printf("Lista:\n");
 	while(i != INVALIDO){
-		printf("%i\n", l->A.reg.chave);
-		i = l->A.prox;
+		printf("%i\n", l->A[i].reg.chave);
+		i = l->A[i].prox;
 	}
 }
 
 int buscaSequencial(Lista *l, TIPOCHAVE ch){
 	int i = l->inicio;
 	while(i != INVALIDO && l->A[i].reg.chave < ch)	{
-    i = l->A.prox;
+    i = l->A[i].prox;
 	}
 	if(i != INVALIDO && l->A[i].reg.chave == ch ){
 		return i;
@@ -73,12 +73,11 @@ int buscaSequencial(Lista *l, TIPOCHAVE ch){
 int obterNo(Lista* l){
 int resultado = l->dispo;	
 if(l->dispo != INVALIDO){
-l->dispo = l->A[1- l->dispo].prox;
+l->dispo = l->A[l->dispo].prox;
 return resultado;
 }else{
 	return INVALIDO;
 }	
-	
 	
 }
 
@@ -101,20 +100,15 @@ bool inserirLisOrd(Lista *l, Registro reg){
 	l->A[i].reg = reg;
 	if(ant == INVALIDO){
 	l->A[i].prox = l->inicio;
-	l->incio = i;	
+	l->inicio = i;	
 	}else{
 		
-	
-		
+
 	l->A[i].prox = l->A[ant].prox;	
 	l->A[ant].prox = i;
-		
 	}
 	
-	
-	
-	
-	
+	return true;
 }
 
 
@@ -122,28 +116,59 @@ bool inserirLisOrd(Lista *l, Registro reg){
 
 
 
+bool excluirElemento(Lista *l, TIPOCHAVE ch){
+	
+	int ant = INVALIDO;
+	int i = l->inicio;
+	
+	while(i != INVALIDO &&  l->A[i].reg.chave<ch){
+		ant = i;
+		i = l->A[i].prox;
+	}
+	if(i == INVALIDO || l->A[i].reg.chave != ch){
+		return false;
+	}
+    if(ant == INVALIDO){
+    	l->inicio = l->A[i].prox;
+	}else{
+		l->A[ant].prox = l->A[i].prox;
+	}
+	devolverNo(l, i);
+	return true;
+	
+}
 
+devolverNo(Lista* l, int j){
+	l->A[j].prox = l->dispo;
 
+}
 
-
-
-
-
-
+reiniciarLista(Lista* l){
+	iniciar(l);
+}
 
 
 main(){
 
+Lista* l = (Lista*) malloc(sizeof(Lista));
+
+Registro reg, reg1, reg2;
+TIPOCHAVE ch = 12;
+reg.chave = 40;
+reg1.chave = 12;
+reg2.chave = 24;
 
 
-
-
-
-
-
-
-
-
+iniciar(l);
+exibir(l);
+inserirLisOrd(l, reg);
+inserirLisOrd(l, reg1);
+inserirLisOrd(l, reg2);
+exibir(l);
+excluirElemento(l, ch);
+exibir(l);
+reiniciarLista(l);
+exibir(l);
 
 
 
