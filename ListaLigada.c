@@ -26,7 +26,6 @@ typedef struct{
 	Elemento A[MAX];
 	int inicio;
 	int dispo;
-	
 }Lista;
 
 
