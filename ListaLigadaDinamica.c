@@ -112,7 +112,6 @@ if(ant == NULL){
 	i->prox = l->inicio;
 	l->inicio = i;
 }else{
-     //5->7 || 5->6->7
 	 i->prox = ant->prox;
      ant->prox = i;
 }
@@ -134,7 +133,7 @@ if(i == NULL){
 if(ant != NULL){
 ant->prox = i->prox;	
 }else{
-i->prox = l->inicio;		
+l->inicio= i->prox;		
 }
 free(i);
 return true;	
@@ -166,13 +165,14 @@ TIPOCHAVE ch = 12;
 reg.chave = 40;
 reg1.chave = 12;
 reg2.chave = 24;
-
+Pont ant, r;
 
 iniciarLista(l);
 exibirLista(l);
 inserirElemListaOrd(l, reg);
 inserirElemListaOrd(l, reg1);
 inserirElemListaOrd(l, reg2);
+exibirLista(l);
 excluirElemento(l, ch);
 exibirLista(l);
 reiniciarLista(l);
