@@ -165,7 +165,7 @@ TIPOCHAVE ch = 12;
 reg.chave = 40;
 reg1.chave = 12;
 reg2.chave = 24;
-Pont ant, r;
+
 
 iniciarLista(l);
 exibirLista(l);
