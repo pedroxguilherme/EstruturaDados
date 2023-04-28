@@ -4,44 +4,32 @@
 #define MAX 50
 #define true 1
 #define false 1
+#include "PilhaEstatica.h"
 
-typedef int TIPOCHAVE;
 
 
-typedef struct{
-	
-	TIPOCHAVE chave;
-	
-}Registro;
-
-typedef struct{
-
-Registro A[MAX];
-int topo;
-}Pilha;
-
-iniciarPilha(Pilha* p){
+void iniciarPilha(Pilha* p){
 	
 	p->topo = -1;
 }
 
-int tamanho(Pilha* p){
+int tamanhoPilha(Pilha* p){
 	
 	return p->topo + 1;
 }
 
-exibir(Pilha* p){
+void exibirPilha(Pilha* p){
 int i;
 printf("Pilha:\n");
 
 for(i=p->topo; i >= 0; i--){
-printf("%i\n", p->A[i].chave);		
+printf("%c", p->A[i].letra);		
 }	
 	printf("\n");
 	
 }
 
-int inserirElemento(Pilha* p, Registro reg){
+int inserirElementoPilha(Pilha* p, Registrop reg){
 	
 	if(p->topo >= MAX-1){		
      return false;
@@ -54,7 +42,7 @@ int inserirElemento(Pilha* p, Registro reg){
 	}
 }
 
-int removerElemento(Pilha* p, Registro* reg){
+int removerElemento(Pilha* p, Registrop* reg){
 
 if(p->topo == -1){
 	return false;
@@ -65,56 +53,36 @@ if(p->topo == -1){
  }
 }
 
-reiniciarLista(Pilha* p){
+void reiniciarPilha(Pilha* p){
 	
 	iniciarPilha(p);
 }
 
 	
-
+	/*
 main(){
-	
+
 Pilha* p = (Pilha*) malloc(sizeof(Pilha));
 
-Registro reg, reg1, reg2;
-Registro* regPonteiro;
+Registrop reg, reg1, reg2;
+Registrop* regPonteiro;
 reg.chave = 40;
+reg.letra = 'a';
 reg1.chave = 12;
+reg1.letra = 'b';
 reg2.chave = 24;
+reg2.letra = 'c';
 
 iniciarPilha(p);
-exibir(p);
-inserirElemento(p, reg);
-inserirElemento(p, reg1);
-inserirElemento(p, reg2);
-exibir(p);
+exibirPilha(p);
+inserirElementoPilha(p, reg);
+inserirElementoPilha(p, reg1);
+inserirElementoPilha(p, reg2);
+exibirPilha(p);
 removerElemento(p, &regPonteiro);
-exibir(p);
-reiniciarLista(p);
-exibir(p);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+exibirPilha(p);
+reiniciarPilha(p);
+exibirPilha(p);
 
 	
-	
-	
-	
-	
-	
-	
-}
+}*/

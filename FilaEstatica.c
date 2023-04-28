@@ -5,23 +5,12 @@
 #define true 1
 #define false 0
 #define max 50
+#include "FilaEstatica.h"
 
 
-typedef int bool;
-typedef int TIPOCHAVE;
-
-typedef struct{
-	
-TIPOCHAVE chave;	
-}Registro;
 
 
-typedef struct{
-	
-Registro A[max];
-int inicio;
-int nroElemento;		
-}Fila;
+
 
 void iniciarFila(Fila* f){
 
@@ -44,16 +33,16 @@ int temp;
 printf("Fila:\n");
 
 for(temp = 0; temp < f->nroElemento; temp++){
-	printf("%i\n", f->A[i].chave);
+	printf("%c", f->A[i].letra);
 	i = (i + 1) % max;
 	
 }
 
-
+printf("\n");
 
 }
 
-bool inserirElementoFila(Fila* f, Registro reg){
+int inserirElementoFila(Fila* f, Registro reg){
 	
     if(f->nroElemento >= max){
     	return false;
@@ -64,7 +53,7 @@ bool inserirElementoFila(Fila* f, Registro reg){
 	return true;
 	
 }
-bool excluirElementoFila(Fila* f, Registro* reg){
+int excluirElementoFila(Fila* f, Registrof* reg){
 	if(f->nroElemento == 0){
 		return false;
 	}
@@ -78,17 +67,19 @@ bool excluirElementoFila(Fila* f, Registro* reg){
 void reiniciarFila(Fila* f){
 	iniciarFila(f);
 }
-
-
+/*
 main(){
 	
 Fila* f = (Fila*) malloc(sizeof(Fila));	
 	
-Registro reg, reg1, reg2, *reg3;
+Registrof reg, reg1, reg2, *reg3;
 
 reg.chave = 40;
+reg.letra = 'a';
 reg1.chave = 12;
+reg1.letra = 'b';
 reg2.chave = 24;
+reg2.letra = 'c';
 
 iniciarFila(f);
 exibirFila(f);
@@ -98,7 +89,7 @@ inserirElementoFila(f, reg2);
 exibirFila(f);	
 excluirElementoFila(f, &reg3);
 exibirFila(f);	
-reiniciarFila(f);
+
 
 	
-}
+}*/
